@@ -4,7 +4,7 @@ public class Patient {
     private String id;
     private String name;
     private String namePinYin;
-    private int age;
+    private String age;
     private String ageType;
     private String gender;
     private String birthDate;
@@ -43,11 +43,11 @@ public class Patient {
         this.namePinYin = namePinYin;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
