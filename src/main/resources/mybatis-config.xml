@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
 <configuration>
-	
   <properties resource="jdbc.properties"/>
-  
+
   <typeAliases>
-  
-  	<package name="com.bjpowernode.crm.settings.domain"/>
-    <package name="com.bjpowernode.crm.workbench.domain"/>
-  	
-  
+<!--    <typeAlias type="com/bjpowernode/crm/settings/domain/User" alias="User"/>-->
+
+    <package name="com/bjpowernode/crm/settings/domain"/>
+    <package name="com/bjpowernode/crm/workbench/domain"/>
+
   </typeAliases>
   
   <environments default="development">
@@ -28,10 +30,9 @@
   
  
   <mappers>
-   
-      <package name="com.bjpowernode.crm.settings.dao"/>
-      <package name="com.bjpowernode.crm.workbench.dao"/>
-    
+<!--    <mapper resource="com/bjpowernode/crm/settings/dao/UserDao.xml"/>-->
+      <package name="com/bjpowernode/crm/settings/dao"/>
+    <package name="com/bjpowernode/crm/workbench/dao"/>
   </mappers>
 </configuration>
 
