@@ -1,4 +1,4 @@
 package com.bjpowernode.crm.workbench.dao;
 
-public interface Dicvalue {
+public interface DicvalueDao {
 }
