@@ -29,12 +29,13 @@ public class User {
     private String email;//电子邮箱
     private String expireTime;//失效时间 yyyy-MM-dd HH:mm:ss
     private String lockState;//锁定状态 0：锁定/1：启用
-    private String deptno;//部门编号
     private String allowIps;//允许访问的ip地址
     private String createTime;//创建时间 yyyy-MM-dd HH:mm:ss
     private String createBy;//创建人
     private String editTime;//修改时间 yyyy-MM-dd HH:mm:ss
     private String editBy;//修改人
+    private String privileges;//权限
+    private String phoneNumber;//手机号码
 
     public String getId() {
         return id;
@@ -92,14 +93,6 @@ public class User {
         this.lockState = lockState;
     }
 
-    public String getDeptno() {
-        return deptno;
-    }
-
-    public void setDeptno(String deptno) {
-        this.deptno = deptno;
-    }
-
     public String getAllowIps() {
         return allowIps;
     }
@@ -138,5 +131,21 @@ public class User {
 
     public void setEditBy(String editBy) {
         this.editBy = editBy;
+    }
+
+    public String getPrivileges() {
+        return privileges;
+    }
+
+    public void setPrivileges(String privileges) {
+        this.privileges = privileges;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
