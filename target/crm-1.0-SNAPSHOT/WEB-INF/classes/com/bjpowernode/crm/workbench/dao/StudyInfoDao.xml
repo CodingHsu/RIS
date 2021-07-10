@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bjpowernode.crm.workbench.dao.StudyInfoDao">
+
+    <update id="signin">
+        update tbl_study_info set
+                                  status = #{status}
+        where accessionNumber=#{accessionNumber}
+    </update>
+
+    <update id="cancel">
+        update tbl_study_info set
+                                  status = #{status},
+                                  scheduledProcedureStepStartDate = #{scheduledProcedureStepStartDate},
+                                  scheduledProcedureStepStartTime = #{scheduledProcedureStepStartTime},
+                                  cancellationReason = #{cancellationReason},
+                                  cancellationTime = #{cancellationTime},
+                                  cancellationUser = #{cancellationUser}
+        where accessionNumber=#{accessionNumber}
+    </update>
+
+    <update id="updatescheduledProcedureStepStart">
+        update tbl_study_info set
+                                  status = #{status},
+                                  scheduledProcedureStepStartDate = #{scheduledProcedureStepStartDate},
+                                  scheduledProcedureStepStartTime = #{scheduledProcedureStepStartTime}
+        where accessionNumber=#{accessionNumber}
+    </update>
+
+    <update id="update">
+        update tbl_study_info set
+                                department = #{department},
+                                emergency = #{emergency},
+                                clinicianID = #{clinicianID},
+                                registrarID = #{registrarID},
+                                bodyParts = #{bodyParts},
+                                modality = #{modality},
+                                studyDevice = #{studyDevice},
+                                studyInstanceUID = #{studyInstanceUID},
+                                requestedProcedureDescription = #{requestedProcedureDescription}
+        where accessionNumber=#{accessionNumber}
+    </update>
+
+    <select id="getStudyInfoByaccessionNumber" resultType="StudyInfo">
+        select * from tbl_study_info where accessionNumber=#{accessionNumber}
+    </select>
+
+    <delete id="delete">
+        delete from tbl_study_info
+        where accessionNumber in
+        <foreach collection="array" item="accessionNumber" open="(" close=")" separator=",">
+            #{accessionNumber}
+        </foreach>
+    </delete>
+
+    <insert id="save">
+        insert into tbl_study_info(
+            accessionNumber,
+            status,
+            patientID,
+            department,
+            emergency,
+            clinicianID,
+            registrarID,
+            bodyParts,
+            modality,
+            studyDevice,
+            studyInstanceUID,
+            requestedProcedureDescription
+        )
+        values(
+                  #{accessionNumber},
+                  #{status},
+                  #{patientID},
+                  #{department},
+                  #{emergency},
+                  #{clinicianID},
+                  #{registrarID},
+                  #{bodyParts},
+                  #{modality},
+                  #{studyDevice},
+                  #{studyInstanceUID},
+                  #{requestedProcedureDescription}
+              )
+    </insert>
+
+    <select id="getTotalByCondition" resultType="int">
+        select count(*)
+        from tbl_study_info s
+        join tbl_patient p
+        on s.patientID=p.id
+        <where>
+            <if test="status!=null and status!=''">
+                s.status like '%' #{status} '%'
+            </if>
+            <if test="patientname!=null and patientname!=''">
+                and p.name like '%' #{patientname} '%'
+            </if>
+            <if test="department!=null and department!=''">
+                and s.department like '%' #{department} '%'
+            </if>
+            <if test="scheduledProcedureStepStartDate!=null and scheduledProcedureStepStartDate!=''">
+                and s.scheduledProcedureStepStartDate like '%' #{scheduledProcedureStepStartDate} '%'
+            </if>
+            <if test="scheduledProcedureStepStartTime!=null and scheduledProcedureStepStartTime!=''">
+                and s.scheduledProcedureStepStartTime like '%' #{scheduledProcedureStepStartTime} '%'
+            </if>
+            <if test="clinicianID!=null and clinicianID!=''">
+                and s.clinicianID like '%' #{clinicianID} '%'
+            </if>
+            <if test="registrarID!=null and registrarID!=''">
+                and s.registrarID like '%' #{registrarID} '%'
+            </if>
+            <if test="emergency!=null and emergency!=''">
+                and s.emergency like '%' #{emergency} '%'
+            </if>
+        </where>
+    </select>
+
+    <select id="getStudyInfoDaoListByCondition" resultType="StudyInfo">
+        select
+        s.accessionNumber,
+        p.name as patientID,
+        s.department,
+        s.clinicianID,
+        s.scheduledProcedureStepStartDate,
+        s.scheduledProcedureStepStartTime,
+        s.emergency
+        from tbl_study_info s
+        join tbl_patient p
+        on s.patientID=p.id
+        <where>
+            <if test="status!=null and status!=''">
+                s.status like '%' #{status} '%'
+            </if>
+            <if test="patientname!=null and patientname!=''">
+                and p.name like '%' #{patientname} '%'
+            </if>
+            <if test="department!=null and department!=''">
+                and s.department like '%' #{department} '%'
+            </if>
+            <if test="scheduledProcedureStepStartDate!=null and scheduledProcedureStepStartDate!=''">
+                and s.scheduledProcedureStepStartDate like '%' #{scheduledProcedureStepStartDate} '%'
+            </if>
+            <if test="scheduledProcedureStepStartTime!=null and scheduledProcedureStepStartTime!=''">
+                and s.scheduledProcedureStepStartTime like '%' #{scheduledProcedureStepStartTime} '%'
+            </if>
+            <if test="clinicianID!=null and clinicianID!=''">
+                and s.clinicianID like '%' #{clinicianID} '%'
+            </if>
+            <if test="registrarID!=null and registrarID!=''">
+                and s.registrarID like '%' #{registrarID} '%'
+            </if>
+            <if test="emergency!=null and emergency!=''">
+                and s.emergency like '%' #{emergency} '%'
+            </if>
+        </where>
+        limit #{skipCount},#{pageSize}
+    </select>
+
+</mapper>
