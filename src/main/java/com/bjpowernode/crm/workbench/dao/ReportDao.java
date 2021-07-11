@@ -2,7 +2,7 @@ package com.bjpowernode.crm.workbench.dao;
 
 import com.bjpowernode.crm.workbench.domain.Patient;
 import com.bjpowernode.crm.workbench.domain.Report_wtt;
-import com.bjpowernode.crm.workbench.domain.StudyInfo;
+import com.bjpowernode.crm.workbench.domain.Study_info;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public interface ReportDao {
 
     Patient get_age_gender(String id);
 
-    StudyInfo get_data_from_studyInfo(String id);
+    Study_info get_data_from_studyInfo(String id);
 
     boolean update(Report_wtt r);
 

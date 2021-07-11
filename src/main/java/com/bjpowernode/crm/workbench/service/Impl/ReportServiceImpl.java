@@ -3,10 +3,10 @@ package com.bjpowernode.crm.workbench.service.Impl;
 import com.bjpowernode.crm.utils.SqlSessionUtil;
 import com.bjpowernode.crm.vo.PaginationVO;
 import com.bjpowernode.crm.workbench.dao.ReportDao;
-import com.bjpowernode.crm.workbench.dao.StudyInfoDao;
+import com.bjpowernode.crm.workbench.dao.Study_infoDao;
 import com.bjpowernode.crm.workbench.domain.Patient;
 import com.bjpowernode.crm.workbench.domain.Report_wtt;
-import com.bjpowernode.crm.workbench.domain.StudyInfo;
+import com.bjpowernode.crm.workbench.domain.Study_info;
 import com.bjpowernode.crm.workbench.service.ReportService;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class ReportServiceImpl implements ReportService {
    // private ReportDao reportDao = new ReportDaoImpl();
    private ReportDao reportDao = SqlSessionUtil.getSqlSession().getMapper(ReportDao.class);
 
-   private StudyInfoDao study_infoDao = SqlSessionUtil.getSqlSession().getMapper(StudyInfoDao.class);
+   private Study_infoDao study_infoDao = SqlSessionUtil.getSqlSession().getMapper(Study_infoDao.class);
 
    public Report_wtt getById(String id) {
 
@@ -40,20 +40,20 @@ public class ReportServiceImpl implements ReportService {
       return flag;
    }
 
-   public PaginationVO<StudyInfo> pageList(Map<String, Object> map) {
+   public PaginationVO<Study_info> pageList(Map<String, Object> map) {
 
       //取得total,可能会有条件
       int total = study_infoDao.getTotalByCondition(map);
       System.out.println("total:"+total);
 
       //取得dataList，可能会有条件
-      List<StudyInfo> dataList = study_infoDao.getActivityListByCondition(map);
+      List<Study_info> dataList = study_infoDao.getActivityListByCondition(map);
       //dataList.set("等待填写",);
       System.out.println("dataList结果:");
       for(int i=0;i< dataList.size();i++)
          System.out.println(dataList.get(i));
       //创建一个vo对象，将total和dataList封装到vo中
-      PaginationVO<StudyInfo> vo = new PaginationVO<StudyInfo>();
+      PaginationVO<Study_info> vo = new PaginationVO<Study_info>();
       vo.setTotal(total);
       vo.setDataList(dataList);
       System.out.println("vo值：");
@@ -159,8 +159,8 @@ public class ReportServiceImpl implements ReportService {
       return pa;
    }
 
-   public StudyInfo get_data_from_studyInfo(String id) {
-      StudyInfo st=reportDao.get_data_from_studyInfo(id);
+   public Study_info get_data_from_studyInfo(String id) {
+      Study_info st=reportDao.get_data_from_studyInfo(id);
       return st;
    }
 

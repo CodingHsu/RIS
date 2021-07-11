@@ -264,7 +264,7 @@
         </div>
         <label  class="col-sm-2 control-label">使用耗材<span style="font-size: 15px; color: red;">*</span></label>
         <div class="col-sm-10" style="width: 300px;">
-            <text type="text" class="form-control" id="useConsumables" value="否">
+            <text type="text" class="form-control" id="useConsumables" value="否"></text>
         </div>
     </div>
 

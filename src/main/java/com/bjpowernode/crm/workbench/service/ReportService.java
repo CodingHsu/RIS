@@ -3,7 +3,7 @@ package com.bjpowernode.crm.workbench.service;
 import com.bjpowernode.crm.vo.PaginationVO;
 import com.bjpowernode.crm.workbench.domain.Patient;
 import com.bjpowernode.crm.workbench.domain.Report_wtt;
-import com.bjpowernode.crm.workbench.domain.StudyInfo;
+import com.bjpowernode.crm.workbench.domain.Study_info;
 
 import java.util.Map;
 
@@ -12,7 +12,7 @@ public interface ReportService {
     public Report_wtt getById(String id);
     public boolean save(Report_wtt r);
 
-    PaginationVO<StudyInfo> pageList(Map<String, Object> map);
+    PaginationVO<Study_info> pageList(Map<String, Object> map);
     PaginationVO<Report_wtt> getdata(Map<String, Object> map);
 
     void update_status(String studyID);
@@ -33,7 +33,7 @@ public interface ReportService {
     //获取病人的年龄和性别
     Patient get_age_gender(String patientID);
 
-    StudyInfo get_data_from_studyInfo(String id);
+    Study_info get_data_from_studyInfo(String id);
 
     boolean update(Report_wtt r);
 

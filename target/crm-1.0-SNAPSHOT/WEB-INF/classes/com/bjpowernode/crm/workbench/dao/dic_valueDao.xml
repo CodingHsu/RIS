@@ -5,7 +5,7 @@
 
 <mapper namespace="com.bjpowernode.crm.workbench.dao.dic_valueDao">
     <!--    ⑥namespace有问题？？已更改-->
-    <select id="get_dictionary"  resultType="dic_value">
+    <select id="get_dictionary"  resultType="Dicvalue">
 
         select * from tbl_dic_value
 

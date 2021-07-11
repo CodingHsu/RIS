@@ -23,7 +23,7 @@
                 and p.name like '%' #{patientName} '%'
             </if>
             <if test="status!=null and status!=''">
-                and a.status like '%' #{status} '%';
+                and a.status like '%' #{status} '%'
             </if>
         </where>
     </select>

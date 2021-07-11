@@ -92,7 +92,7 @@ public class ReportController extends HttpServlet {
         String id= request.getParameter("creat-studyID");
         System.out.println(id);
         ReportService re = (ReportService) ServiceFactory.getService(new ReportServiceImpl());
-        StudyInfo st = re.get_data_from_studyInfo(id);
+        Study_info st = re.get_data_from_studyInfo(id);
         PrintJson.printJsonObj(response,st);
     }
 
@@ -211,7 +211,7 @@ public class ReportController extends HttpServlet {
         String id2= request.getParameter("studyID");
         System.out.println(id2);
         ReportService re2 = (ReportService) ServiceFactory.getService(new ReportServiceImpl());
-        StudyInfo st = re2.get_data_from_studyInfo(id2);
+        Study_info st = re2.get_data_from_studyInfo(id2);
         System.out.println(st);
 
         //把上面的数据封装到一个map中
@@ -338,7 +338,7 @@ public class ReportController extends HttpServlet {
 
         //vo位于src/main/java/com/bjpowernode/crm/vo/PaginationVO.java
         //里面有详细用法简述
-        PaginationVO<StudyInfo> paginationVO = reportService.pageList(map);
+        PaginationVO<Study_info> paginationVO = reportService.pageList(map);
         System.out.println("输出成功");
 
         //vo--> {"total":100,"dataList":[{待写报告1},{2},{3}]}
