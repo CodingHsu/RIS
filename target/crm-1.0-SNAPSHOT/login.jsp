@@ -96,8 +96,8 @@
 					//如果登录成功
 					if(data.success){
 
-						//跳转到工作台的初始也（欢迎页）
-						window.location.href = "workbench/index.jsp";
+						//跳转到工作台的初始也（欢迎页）将登陆人的账号名称传递过去。
+						window.location.href = "workbench/index.jsp?loginAct="+loginAct;
 
 						//如果登录失败
 					}else{

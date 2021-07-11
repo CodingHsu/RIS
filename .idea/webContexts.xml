@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/workbench/report_review/test01.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/workbench/report_review" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/workbench/write_report/report_edit1.jsp" value="file://$PROJECT_DIR$/src/main/webapp/workbench/write_report" />
+      </map>
+    </option>
+  </component>
+</project>

@@ -2,11 +2,12 @@ package com.bjpowernode.crm.workbench.domain;
 
 public class Dicvalue {
 
-    private String id;
-    private String value;
-    private String text;
-    private String orderNo;
-    private String typeCode;
+    private String id;//
+    private String value;//疾病部位
+    private String text;//
+    private String orderNo;//
+    private String typeCode;//
+
 
     public String getId() {
         return id;
@@ -46,5 +47,16 @@ public class Dicvalue {
 
     public void setTypeCode(String typeCode) {
         this.typeCode = typeCode;
+    }
+
+    @Override
+    public String toString() {
+        return "tbl_dic_value{" +
+                "id='" + id + '\'' +
+                ", value='" + value + '\'' +
+                ", text='" + text + '\'' +
+                ", orderNo='" + orderNo + '\'' +
+                ", typeCode='" + typeCode + '\'' +
+                '}';
     }
 }

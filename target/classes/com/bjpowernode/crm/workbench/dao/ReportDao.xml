@@ -4,7 +4,122 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bjpowernode.crm.workbench.dao.ReportDao">
+    <!--目前的疑惑是诊断医生界面有一列待填写的报告，那是否在数据库的tbl_report中已经存在这一条记录吗？还是需要增加新的记录-->
+    <!--    parameterType自动起别名，省略-->
+    <update id="updateAuditorID" parameterType="java.lang.String">
+        update tbl_report
+        set  auditorID=#{auditorID}
+        where id=#{id}
+    </update>
 
+    <select id="getPatientID" resultType="java.lang.String">
+        select patientID
+        from tbl_study_info
+        where accessionNumber=#{id}
+    </select>
 
+    <select id="getDiseaseName" resultType="java.lang.String">
+        select p.name
+        from tbl_disease_dictionary p
+        where id=#{id}
+    </select>
 
+    <select id="getPatientName" resultType="Patient">
+        select p.name,p.age,p.gender
+        from tbl_patient p
+        where p.id=#{id}
+    </select>
+
+    <select id="searchIdByNameFromTblUser" resultType="java.lang.String">
+        select id
+        from tbl_user
+        where name=#{name}
+    </select>
+
+    <select id="get_age_gender" resultType="Patient">
+        select id,name,age,gender
+        from tbl_patient
+        where id=#{id}
+    </select>
+
+    <select id="get_data_from_studyInfo" resultType="Study_info">
+    select projection,useConsumables,scheduledProcedureStepDescription
+    from tbl_study_info
+    where accessionNumber=#{id}
+    </select>
+
+    <select id="getById" resultType="Report_wtt">
+        select * from tbl_report
+        where id=#{id}
+    </select>
+
+    <select id="getPart" resultType="Report_wtt">
+
+    </select>
+
+    <!--增加一条新的报告，从无到有-->
+    <insert id="save" parameterType="Report_wtt">
+        insert into tbl_report(id,studyID,patientID,reportStatus,createUserID,auditorID,imagingFindings,diagnosticOpinion,bodyPart,diseaseName,diseaseDescription,createTime,positive)
+        values(#{id},#{studyID},#{patientID},#{reportStatus},#{createUserID},#{auditorID},#{imagingFindings},#{diagnosticOpinion},#{bodyPart},#{diseaseName},#{diseaseDescription},#{createTime},#{positive})
+    </insert>
+
+    <!--根据表设计中诊断医生需要填写的项目进行更新,应该用不到-->
+    <update id="update">
+        update tbl_report
+        set reportStatus=#{reportStatus},imagingFindings=#{imagingFindings},bodyPart=#{bodyPart} ,diagnosticOpinion=#{diagnosticOpinion},diseaseName=#{diseaseName},diseaseDescription=#{diseaseDescription}
+        where id=#{id}
+    </update>
+
+    <!--删除操作需要做吗？是删除报告吗？还是删除待填写还是待修改的报告？是谁的权限呢？-->
+    <delete id="deleteReport">
+
+        delete from tbl_report where id=#{id}
+
+    </delete>
+
+    <select id="getAll" resultType="com.bjpowernode.crm.workbench.domain.Report_wtt">
+
+        select * from tbl_report
+
+    </select>
+
+    <select id="select3" parameterType="Report_wtt" resultType="Report_wtt">
+
+        select * from tbl_report where id=#{id} and studyID=#{studyID}
+
+    </select>
+
+    <select id="getTotalByCondition" resultType="int"> /*①不能写resultMap*/
+    select count(*)
+    from tbl_report a
+    where reportStatus=1 or reportStatus=3 or reportStatus=2;
+    </select>
+
+    <select id="getActivityListByCondition" resultType="Report_wtt">
+        select
+            a.id,
+            a.patientID ,
+            a.studyID,
+            a.reportStatus
+        from tbl_report a
+        where a.reportStatus=1 or reportStatus=3 or reportStatus=2
+        order by a.id asc
+            limit #{skipCount},#{pageSize}
+    </select>
+
+    <select id="get_report" resultType="Report_wtt"> /*①不能写resultMap*/
+    select * from tbl_report where id=#{id} or studyID=#{id}
+    </select>
+
+    <update id="pass" >
+
+        update tbl_report set reportStatus=3 where id=#{id}
+
+    </update>
+
+    <update id="reject" >
+
+        update tbl_report set reportStatus=2 where id=#{id}
+
+    </update>
 </mapper>

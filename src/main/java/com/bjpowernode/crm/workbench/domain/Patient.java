@@ -154,4 +154,27 @@ public class Patient {
     public void setHealthCareType(String healthCareType) {
         this.healthCareType = healthCareType;
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", namePinYin='" + namePinYin + '\'' +
+                ", age='" + age + '\'' +
+                ", ageType='" + ageType + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", address='" + address + '\'' +
+                ", pregnancy='" + pregnancy + '\'' +
+                ", inpatientDepartment='" + inpatientDepartment + '\'' +
+                ", inpatientBedNumber='" + inpatientBedNumber + '\'' +
+                ", inpatientNumber='" + inpatientNumber + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", patientType='" + patientType + '\'' +
+                ", IDType='" + IDType + '\'' +
+                ", IDNumber='" + IDNumber + '\'' +
+                ", healthCareType='" + healthCareType + '\'' +
+                '}';
+    }
 }

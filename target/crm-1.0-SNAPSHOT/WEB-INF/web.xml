@@ -33,8 +33,33 @@
     <servlet-name>ActivityController</servlet-name>
     <url-pattern>/workbench/activity/xxx.do</url-pattern>
   </servlet-mapping>
-  
-  
+
+  <!--报告模块控制器-->
+  <servlet>
+    <servlet-name>ReportController</servlet-name>
+    <servlet-class>com.bjpowernode.crm.workbench.web.controller.ReportController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReportController</servlet-name>
+    <url-pattern>/workbench/Report_wtt/save.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/get_data.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/pageList.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/get_datalist.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/get_datalist2.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/get_dictionary.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/pageList_review.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/get_report.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/get_report0.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/pass.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/reject.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/get_age_gender.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/get_data_from_studyInfo.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/updateReport.do</url-pattern>
+    <url-pattern>/workbench/Report_wtt/get_disease_dictionary.do</url-pattern>
+    <url-pattern>/xxx3</url-pattern>
+    <url-pattern>/xxx4</url-pattern>
+
+  </servlet-mapping>
   
 </web-app>
 

@@ -1,26 +1,70 @@
 package com.bjpowernode.crm.workbench.domain;
 
 public class StudyInfo {
-    private String accessionNumber;
-    private String status;
-    private String patientID;
-    private String department;
-    private String emergency;
-    private String clinicianID;
-    private String techicianID;
-    private String bodyParts;
-    private String modality;
-    private String studyDevice;
-    private String studyInstanceUID;
-    private String requestedProcedureDescription;
-    private String scheduledProcedureStepStartDate;
-    private String scheduledProcedureStepStartTime;
-    private String scheduledProcedureStepDescription;
-    private String scheduledProcedureID;
-    private String projection;
-    private String cancellationReason;
-    private String cancellationUser;
-    private String useConsumables;
+
+     private String accessionNumber;//检查号
+     private String status;//检查状态
+     private String patientID;//病人号
+     private String department;//科室
+     private String emergency;//是否急诊
+     private String clinicianID;//临床医生工号
+     private String registrarID;//登记员工号
+     private String technicianID;//技师工号
+     private String bodyParts;//检查位置
+     private String modality;//模式（类似于检查设备，但又不是具体的检查设备，可以理解为检查设备的类型）
+     private String studyDevice;//检查设备
+     private String studyInstanceUID;//检查UID
+     private String requestedProcedureDescription;//请求过程描述
+     private String scheduledProcedureStepStartDate;//预约日期
+     private String scheduledProcedureStepStartTime;//预约时间
+     private String scheduledProcedureStepDescription;//计划的程序步骤的相关描述
+     private String scheduledProcedureStepID;//计划的程序步骤相关ID
+     private String requestedProcedureID;//必要的程序ID
+     private String projection;//投照方式
+     private String cancellationReason;//取消原因
+     private String cancellationTime;//取消时间
+     private String cancellationUser;//取消人员
+     private String useConsumables;//使用耗材
+
+     private String name;//多表查询时代表的病人名称
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Study_info{" +
+                "accessionNumber='" + accessionNumber + '\'' +
+                ", status='" + status + '\'' +
+                ", patientID='" + patientID + '\'' +
+                ", department='" + department + '\'' +
+                ", emergency='" + emergency + '\'' +
+                ", clinicianID='" + clinicianID + '\'' +
+                ", registrarID='" + registrarID + '\'' +
+                ", technicianID='" + technicianID + '\'' +
+                ", bodyParts='" + bodyParts + '\'' +
+                ", modality='" + modality + '\'' +
+                ", studyDevice='" + studyDevice + '\'' +
+                ", studyInstanceUID='" + studyInstanceUID + '\'' +
+                ", requestedProcedureDescription='" + requestedProcedureDescription + '\'' +
+                ", scheduledProcedureStepStartDate='" + scheduledProcedureStepStartDate + '\'' +
+                ", scheduledProcedureStepStartTime='" + scheduledProcedureStepStartTime + '\'' +
+                ", scheduledProcedureStepDescription='" + scheduledProcedureStepDescription + '\'' +
+                ", scheduledProcedureStepID='" + scheduledProcedureStepID + '\'' +
+                ", requestedProcedureID='" + requestedProcedureID + '\'' +
+                ", projection='" + projection + '\'' +
+                ", cancellationReason='" + cancellationReason + '\'' +
+                ", cancellationTime='" + cancellationTime + '\'' +
+                ", cancellationUser='" + cancellationUser + '\'' +
+                ", useConsumables='" + useConsumables + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 
     public String getAccessionNumber() {
         return accessionNumber;
@@ -70,12 +114,20 @@ public class StudyInfo {
         this.clinicianID = clinicianID;
     }
 
-    public String getTechicianID() {
-        return techicianID;
+    public String getRegistrarID() {
+        return registrarID;
     }
 
-    public void setTechicianID(String techicianID) {
-        this.techicianID = techicianID;
+    public void setRegistrarID(String registrarID) {
+        this.registrarID = registrarID;
+    }
+
+    public String getTechnicianID() {
+        return technicianID;
+    }
+
+    public void setTechnicianID(String technicianID) {
+        this.technicianID = technicianID;
     }
 
     public String getBodyParts() {
@@ -142,12 +194,20 @@ public class StudyInfo {
         this.scheduledProcedureStepDescription = scheduledProcedureStepDescription;
     }
 
-    public String getScheduledProcedureID() {
-        return scheduledProcedureID;
+    public String getScheduledProcedureStepID() {
+        return scheduledProcedureStepID;
     }
 
-    public void setScheduledProcedureID(String scheduledProcedureID) {
-        this.scheduledProcedureID = scheduledProcedureID;
+    public void setScheduledProcedureStepID(String scheduledProcedureStepID) {
+        this.scheduledProcedureStepID = scheduledProcedureStepID;
+    }
+
+    public String getRequestedProcedureID() {
+        return requestedProcedureID;
+    }
+
+    public void setRequestedProcedureID(String requestedProcedureID) {
+        this.requestedProcedureID = requestedProcedureID;
     }
 
     public String getProjection() {
@@ -164,6 +224,14 @@ public class StudyInfo {
 
     public void setCancellationReason(String cancellationReason) {
         this.cancellationReason = cancellationReason;
+    }
+
+    public String getCancellationTime() {
+        return cancellationTime;
+    }
+
+    public void setCancellationTime(String cancellationTime) {
+        this.cancellationTime = cancellationTime;
     }
 
     public String getCancellationUser() {

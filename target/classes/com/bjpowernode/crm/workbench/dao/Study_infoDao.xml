@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bjpowernode.crm.workbench.dao.Study_infoDao">
+<!--    ⑥namespace有问题？？已更改-->
+    <select id="getTotalByCondition" resultType="int"> /*①不能写resultMap*/
+        select count(*)
+        from tbl_study_info a
+            join tbl_patient p
+                on a.patientID=p.id
+        <where>
+            (a.status=6 or status=4)
+            /*查询的工作 studyID,patientID,patientName,status*/
+            <if test="studyID!=null and studyID!=''">
+                and a.accessionNumber like '%' #{studyID} '%'
+            </if>
+            <if test="patientID!=null and patientID!=''">
+                and a.patientID like '%' #{patientID} '%'
+            </if>
+            <if test="patientName!=null and patientName!=''">
+                and p.name like '%' #{patientName} '%'
+            </if>
+            <if test="status!=null and status!=''">
+                and a.status like '%' #{status} '%';
+            </if>
+        </where>
+    </select>
+
+    <select id="getActivityListByCondition" resultType="Study_info">
+    select
+        a.accessionNumber,
+        p.name as name,/*a.patientID,②p.name as patientID会失败吗？*/
+        a.department,
+        a.emergency,
+        a.patientID,
+        a.status  /*③逗号问题，这里没有逗号*/
+    from tbl_study_info a,tbl_patient p
+    <where>
+
+        (a.status=6 or status=4) and a.patientID=p.id
+        /*查询的工作 studyID,patientID,patientName,status*/
+        <if test="studyID!=null and studyID!=''">
+            and a.accessionNumber like '%' #{studyID} '%'
+        </if>
+        <if test="patientID!=null and patientID!=''">
+            and a.patientID like '%' #{patientID} '%'
+        </if>
+        <if test="patientName!=null and patientName!=''">
+            and p.name like '%' #{patientName} '%'
+        </if>
+        <if test="status!=null and status!=''">
+            and a.status like '%' #{status} '%'
+        </if>
+    </where>
+    order by a.accessionNumber asc
+    limit #{skipCount},#{pageSize}
+    </select>
+
+    <update id="update_status" >
+
+        update tbl_study_info set status=3 where accessionNumber=#{id}
+
+    </update>
+
+    <update id="update_status2" >
+
+        update tbl_study_info set status=4 where accessionNumber=#{id}
+
+    </update>
+
+    <update id="update_status3" >/*审核完成，将study_info表中的status更改为7*/
+
+        update tbl_study_info set status=7 where accessionNumber=#{id}
+
+    </update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
