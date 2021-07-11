@@ -1,6 +1,6 @@
 package com.bjpowernode.crm.workbench.dao;
 
-import com.bjpowernode.crm.workbench.domain.Study_info;
+import com.bjpowernode.crm.workbench.domain.StudyInfo;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +8,7 @@ import java.util.Map;
 public interface Study_infoDao {
     //static int getTotalByCondition(Map<String, Object> map);
 
-    List<Study_info> getActivityListByCondition(Map<String, Object> map);
+    List<StudyInfo> getActivityListByCondition(Map<String, Object> map);
 
     int getTotalByCondition(Map<String, Object> map);
 

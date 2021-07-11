@@ -6,6 +6,13 @@
 <mapper namespace="com.bjpowernode.crm.workbench.dao.ReportDao">
     <!--目前的疑惑是诊断医生界面有一列待填写的报告，那是否在数据库的tbl_report中已经存在这一条记录吗？还是需要增加新的记录-->
     <!--    parameterType自动起别名，省略-->
+
+    <update id="printReport">
+        update tbl_report
+        set  reportStatus=4
+        where id=#{id} AND reportStatus=3
+    </update>
+
     <update id="updateAuditorID" parameterType="java.lang.String">
         update tbl_report
         set  auditorID=#{auditorID}
@@ -42,7 +49,7 @@
         where id=#{id}
     </select>
 
-    <select id="get_data_from_studyInfo" resultType="Study_info">
+    <select id="get_data_from_studyInfo" resultType="StudyInfo">
     select projection,useConsumables,scheduledProcedureStepDescription
     from tbl_study_info
     where accessionNumber=#{id}

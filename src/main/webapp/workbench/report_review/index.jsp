@@ -124,6 +124,51 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
             })
 
+            //为打印按钮绑定事件
+            $("#printBtn").click(function () {
+
+                var $xz = $("input[name=xz]:checked");
+
+                if($xz.length==0){
+
+                    alert("请选择需要修改的记录");
+
+                }else if($xz.length>1){
+
+                    alert("只能选择一条记录进行打印");
+
+                    //肯定只选了一条
+                }else{
+                    //将需要修改的绑定的ID传进去
+                    var id = $xz.val();
+                    //应该是只有审核通过的才可以打印吧？
+                    $.ajax({
+                        url : "workbench/Report_wtt/printReport.do",
+                        data : {
+                            "id" : id
+                        },
+                        type : "post",
+                        dataType : "text",
+                        async: true,
+                        success : function (data) {
+                            alert(data);
+                            if(data=='true')
+                            {
+                                //添加成功之后，列表少一条记录，局部刷新列表（还没有实现），跳回填写报告页面
+                                alert("打印成功！");
+                            }
+                            else
+                            {
+                                alert("打印失败");
+                            }
+                        }
+
+                    })
+
+                }
+
+            })
+
         });
 
     </script>
@@ -143,7 +188,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
         <div class="btn-toolbar" role="toolbar" style="background-color: #F7F7F7; height: 50px; position: relative;top: 10px;">
             <div class="btn-group" style="position: relative; top: 18%;">
-                <button type="button" class="btn btn-primary" onclick="window.location.href='report_edit.html';"><span class="glyphicon glyphicon-plus"></span>打印</button>
+                <button type="button" class="btn btn-primary" id="printBtn"><span class="glyphicon glyphicon-plus"></span>打印</button>
             </div>
         </div>
         <div style="position: relative;top: 10px;">

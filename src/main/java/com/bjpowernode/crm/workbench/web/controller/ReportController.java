@@ -78,6 +78,18 @@ public class ReportController extends HttpServlet {
         else if("/workbench/Report_wtt/get_report0.do".equals(path)){
             get_report0(request,response);
         }
+        else if("/workbench/Report_wtt/printReport.do".equals(path)){
+            printReport(request,response);
+        }
+    }
+
+    private void printReport(HttpServletRequest request, HttpServletResponse response) {
+
+        ReportService re = (ReportService) ServiceFactory.getService(new ReportServiceImpl());
+        String id= request.getParameter("id");
+        boolean flag = re.printReport(id);
+        System.out.println("打印是否成功？"+flag);
+        PrintJson.printJsonObj(response,flag);
     }
 
     private void get_disease_dictionary(HttpServletRequest request, HttpServletResponse response) {
@@ -92,7 +104,7 @@ public class ReportController extends HttpServlet {
         String id= request.getParameter("creat-studyID");
         System.out.println(id);
         ReportService re = (ReportService) ServiceFactory.getService(new ReportServiceImpl());
-        Study_info st = re.get_data_from_studyInfo(id);
+        StudyInfo st = re.get_data_from_studyInfo(id);
         PrintJson.printJsonObj(response,st);
     }
 
@@ -211,7 +223,7 @@ public class ReportController extends HttpServlet {
         String id2= request.getParameter("studyID");
         System.out.println(id2);
         ReportService re2 = (ReportService) ServiceFactory.getService(new ReportServiceImpl());
-        Study_info st = re2.get_data_from_studyInfo(id2);
+        StudyInfo st = re2.get_data_from_studyInfo(id2);
         System.out.println(st);
 
         //把上面的数据封装到一个map中
@@ -338,7 +350,7 @@ public class ReportController extends HttpServlet {
 
         //vo位于src/main/java/com/bjpowernode/crm/vo/PaginationVO.java
         //里面有详细用法简述
-        PaginationVO<Study_info> paginationVO = reportService.pageList(map);
+        PaginationVO<StudyInfo> paginationVO = reportService.pageList(map);
         System.out.println("输出成功");
 
         //vo--> {"total":100,"dataList":[{待写报告1},{2},{3}]}

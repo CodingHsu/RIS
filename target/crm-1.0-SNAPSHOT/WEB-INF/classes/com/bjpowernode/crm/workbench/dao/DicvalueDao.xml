@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
- PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
- "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bjpowernode.crm.workbench.dao.DicvalueDao">
+    <!--    ⑥namespace有问题？？已更改-->
+    <select id="get_dictionary"  resultType="Dicvalue">
+
+        select * from tbl_dic_value
+
+    </select>
+
+    <select id="get_disease_dictionary"  resultType="DiseaseDictionary">
+
+        select * from tbl_disease_dictionary
+
+    </select>
 
 
-	
 </mapper>
 
 
